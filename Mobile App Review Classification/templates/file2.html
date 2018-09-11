@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Mobile Review Classifier</title>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ <style>
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 50%;
+    display: none;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.nav {
+    background-color: #333;
+    overflow: hidden;
+}
+
+
+.nav a {
+    float: left;
+    color: grey;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+
+.nav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+
+.nav a.active {
+    background-color: #0000CD;
+    color: white;
+}
+
+.tableLayout{
+  margin: 0 auto;
+    width: 100px; 
+    padding-right:50px; 
+}
+
+body{
+     background-color: #BCC6CC;
+}
+
+</style>
+</head>
+
+<body>
+	<br><br>
+    <h1><center>Mobile Reviews Classifier</h1>
+    <div class="nav">
+        <a href="http://127.0.0.1:5000/ ">Home</a>
+        <a href="#WordCount" class="active">Word Count</a>
+    </div>
+	<br><br><br><br><br><br><br>
+
+<div class="tableLayout">
+<select>
+    <option value="-1">Select</option>
+    <option value="file_bug_report">Presence of bug</option>
+    <option value="feature_request">User Requests</option>
+    <option value="has_info_asking">User Queries</option>
+    <option value="has_info_giving">Application feature details</option>
+</select>
+<br><br>
+
+
+
+<br><br>
+
+<table id="file_bug_report" class="table">
+ <tr><th>Term</th><th>Counts</th></tr>	
+ <tr><td>app</td><td>131</td></tr>
+ <tr><td>video</td><td>78</td></tr>
+ <tr><td>The</td><td>46</td></tr>
+ <tr><td>time</td><td>45</td></tr>
+ <tr><td>game</td><td>36</td></tr>
+ <tr><td>play</td><td>35</td></tr>
+ <tr><td>It</td><td>34</td></tr>
+ <tr><td>like</td><td>32</td></tr>
+ <tr><td>doesnt</td><td>31</td></tr>
+ <tr><td>music</td><td>31</td></tr>
+ <tr><td>videos</td><td>31</td></tr>
+ <tr><td>update</td><td>29</td></tr>
+ <tr><td>version</td><td>29</td></tr>
+ <tr><td>cant</td><td>27</td></tr>
+ <tr><td>fix</td><td>27</td></tr>
+ <tr><td>even</td><td>25</td></tr>
+ <tr><td>see</td><td>25</td></tr>
+ <tr><td>Xperia</td><td>25</td></tr>
+ <tr><td>still</td><td>24</td></tr>
+ <tr><td>would</td><td>24</td></tr>
+ <tr><td>problem</td><td>24</td></tr>
+ <tr><td>screen</td><td>24</td></tr>
+ <tr><td>Sony</td><td>23</td></tr>
+ <tr><td>one</td><td>23</td></tr>
+ <tr><td>work</td><td>22</td></tr>
+ <tr><td>dont</td><td>22</td></tr>
+ <tr><td>new</td><td>22</td></tr>
+ <tr><td>phone</td><td>21</td></tr>
+ <tr><td>steps</td><td>20</td></tr>
+ <tr><td>Please</td><td>20</td></tr>
+ <tr><td>Video</td><td>19</td></tr>
+ <tr><td>start</td><td>19</td></tr>
+ <tr><td>back</td><td>19</td></tr>
+ <tr><td>using</td><td>19</td></tr>
+ <tr><td>movies</td><td>18</td></tr>
+ <tr><td>This</td><td>18</td></tr>
+ <tr><td>beta</td><td>18</td></tr>
+ <tr><td>want</td><td>18</td></tr>
+ <tr><td>use</td><td>18</td></tr>
+ <tr><td>go</td><td>18</td></tr>
+ <tr><td>movie</td><td>18</td></tr>
+ <tr><td>song</td><td>17</td></tr>
+ <tr><td>works</td><td>17</td></tr>
+ <tr><td>songs</td><td>17</td></tr>
+ <tr><td>And</td><td>17</td></tr>
+ <tr><td>good</td><td>16</td></tr>
+ <tr><td>available</td><td>16</td></tr>
+ <tr><td>When</td><td>16</td></tr>
+ <tr><td>issue</td><td>15</td></tr>
+ <tr><td>playing</td><td>15</td></tr>
+ <tr><td>sometimes</td><td>15</td></tr>
+ <tr><td>My</td><td>15</td></tr>
+ <tr><td>great</td><td>15</td></tr>
+ <tr><td>player</td><td>15</td></tr>
+ <tr><td>also</td><td>15</td></tr>
+ <tr><td>think</td><td>14</td></tr>
+ <tr><td>add</td><td>14</td></tr>
+ <tr><td>track</td><td>14</td></tr>
+ <tr><td>two</td><td>14</td></tr>
+ <tr><td>level</td><td>14</td></tr>
+ <tr><td>feature</td><td>14</td></tr>
+ <tr><td>since</td><td>14</td></tr>
+ <tr><td>sleep</td><td>14</td></tr>
+ <tr><td>five</td><td>14</td></tr>
+ <tr><td>But</td><td>14</td></tr>
+ <tr><td>files</td><td>14</td></tr>
+ <tr><td>thirty</td><td>14</td></tr>
+ <tr><td>need</td><td>13</td></tr>
+ <tr><td>show</td><td>13</td></tr>
+ <tr><td>set</td><td>13</td></tr>
+ <tr><td>Google</td><td>13</td></tr>
+ <tr><td>mode</td><td>13</td></tr>
+ <tr><td>minutes</td><td>13</td></tr>
+ <tr><td>text</td><td>13</td></tr>
+ <tr><td>get</td><td>13</td></tr>
+ <tr><td>Lifelog</td><td>12</td></tr>
+ <tr><td>lifelog</td><td>12</td></tr>
+ <tr><td>running</td><td>12</td></tr>
+ <tr><td>button</td><td>12</td></tr>
+ <tr><td>without</td><td>12</td></tr>
+ <tr><td>downloaded</td><td>12</td></tr>
+ <tr><td>Android</td><td>12</td></tr>
+ <tr><td>latest</td><td>12</td></tr>
+ <tr><td>could</td><td>12</td></tr>
+ <tr><td>TrackID</td><td>12</td></tr>
+ <tr><td>sound</td><td>12</td></tr>
+ <tr><td>three</td><td>12</td></tr>
+ <tr><td>please</td><td>12</td></tr>
+ <tr><td>last</td><td>11</td></tr>
+ <tr><td>automatically</td><td>11</td></tr>
+ <tr><td>search</td><td>11</td></tr>
+ <tr><td>times</td><td>11</td></tr>
+ <tr><td>So</td><td>11</td></tr>
+ <tr><td>shows</td><td>11</td></tr>
+ <tr><td>voice</td><td>11</td></tr>
+ <tr><td>data</td><td>11</td></tr>
+ <tr><td>download</td><td>11</td></tr>
+ <tr><td>tracking</td><td>10</td></tr>
+ <tr><td>history</td><td>10</td></tr>
+ <tr><td>nice</td><td>10</td></tr>
+ <tr><td>bit</td><td>10</td></tr>
+ <tr><td>ads</td><td>10</td></tr>
+ <tr><td>iPad</td><td>10</td></tr>
+ <tr><td>got</td><td>10</td></tr>
+ <tr><td>open</td><td>10</td></tr>
+ <tr><td>played</td><td>10</td></tr>
+ <tr><td>keeps</td><td>10</td></tr>
+ <tr><td>another</td><td>10</td></tr>
+ <tr><td>added</td><td>10</td></tr>
+ <tr><td>change</td><td>10</td></tr>
+ <tr><td>goes</td><td>10</td></tr>
+ <tr><td>If</td><td>10</td></tr>
+ <tr><td>click</td><td>10</td></tr>
+ <tr><td>always</td><td>10</td></tr>
+ <tr><td>recognize</td><td>10</td></tr>
+ <tr><td>Facebook</td><td>10</td></tr>
+ <tr><td>file</td><td>10</td></tr>
+ <tr><td>fine</td><td>10</td></tr>
+ <tr><td>correctly</td><td>10</td></tr>
+ <tr><td>In</td><td>10</td></tr>
+ <tr><td>account</td><td>10</td></tr>
+ <tr><td>every</td><td>10</td></tr>
+ <tr><td>way</td><td>10</td></tr>
+ <tr><td>night</td><td>10</td></tr>
+ <tr><td>slow</td><td>9</td></tr>
+ <tr><td>idea</td><td>9</td></tr>
+ <tr><td>showing</td><td>9</td></tr>
+ <tr><td>seems</td><td>9</td></tr>
+ <tr><td>never</td><td>9</td></tr>
+ <tr><td>After</td><td>9</td></tr>
+ <tr><td>well</td><td>9</td></tr>
+ <tr><td>levels</td><td>9</td></tr>
+ <tr><td>Can</td><td>9</td></tr>
+ <tr><td>application</td><td>9</td></tr>
+ <tr><td>move</td><td>9</td></tr>
+ <tr><td>audio</td><td>9</td></tr>
+ <tr><td>yet</td><td>9</td></tr>
+ <tr><td>Its</td><td>9</td></tr>
+ <tr><td>quality</td><td>9</td></tr>
+ <tr><td>many</td><td>9</td></tr>
+ <tr><td>nothing</td><td>9</td></tr>
+ <tr><td>Also</td><td>9</td></tr>
+ <tr><td>annoying</td><td>9</td></tr>
+ <tr><td>tracks</td><td>9</td></tr>
+ <tr><td>icon</td><td>9</td></tr>
+ <tr><td>There</td><td>9</td></tr>
+ <tr><td>Hi</td><td>9</td></tr>
+ <tr><td>artist</td><td>9</td></tr>
+ <tr><td>album</td><td>9</td></tr>
+ <tr><td>wrong</td><td>9</td></tr>
+ <tr><td>recorded</td><td>9</td></tr>
+ <tr><td>shown</td><td>9</td></tr>
+ <tr><td>little</td><td>8</td></tr>
+ <tr><td>Beta</td><td>8</td></tr>
+ <tr><td>delete</td><td>8</td></tr>
+ <tr><td>Good</td><td>8</td></tr>
+ <tr><td>enough</td><td>8</td></tr>
+ <tr><td>different</td><td>8</td></tr>
+ <tr><td>didnt</td><td>8</td></tr>
+ <tr><td>know</td><td>8</td></tr>
+ <tr><td>long</td><td>8</td></tr>
+ <tr><td>really</td><td>8</td></tr>
+ <tr><td>error</td><td>8</td></tr>
+ <tr><td>working</td><td>8</td></tr>
+ <tr><td>tried</td><td>8</td></tr>
+ <tr><td>give</td><td>8</td></tr>
+ <tr><td>make</td><td>8</td></tr>
+ <tr><td>Why</td><td>8</td></tr>
+ <tr><td>instead</td><td>8</td></tr>
+ <tr><td>better</td><td>8</td></tr>
+ <tr><td>much</td><td>8</td></tr>
+ <tr><td>bug</td><td>8</td></tr>
+ <tr><td>fixed</td><td>8</td></tr>
+ <tr><td>For</td><td>8</td></tr>
+ <tr><td>able</td><td>8</td></tr>
+ <tr><td>hours</td><td>8</td></tr>
+ <tr><td>seven</td><td>8</td></tr>
+ <tr><td>least</td><td>8</td></tr>
+ <tr><td>etc</td><td>7</td></tr>
+ <tr><td>log</td><td>7</td></tr>
+ <tr><td>Cant</td><td>7</td></tr>
+ <tr><td>found</td><td>7</td></tr>
+ <tr><td>run</td><td>7</td></tr>
+ <tr><td>gets</td><td>7</td></tr>
+ <tr><td>understand</td><td>7</td></tr>
+ <tr><td>thing</td><td>7</td></tr>
+ <tr><td>Does</td><td>7</td></tr>
+ <tr><td>google</td><td>7</td></tr>
+ <tr><td>next</td><td>7</td></tr>
+ <tr><td>Not</td><td>7</td></tr>
+ <tr><td>something</td><td>7</td></tr>
+ <tr><td>option</td><td>7</td></tr>
+ <tr><td>done</td><td>7</td></tr>
+ <tr><td>help</td><td>7</td></tr>
+ <tr><td>created</td><td>7</td></tr>
+ <tr><td>hundred</td><td>7</td></tr>
+ <tr><td>No</td><td>7</td></tr>
+ <tr><td>soon</td><td>7</td></tr>
+ <tr><td>star</td><td>7</td></tr>
+ <tr><td>right</td><td>7</td></tr>
+</table>
+
+<table id="feature_request" class="table">
+ <tr><th>Term</th><th>Counts</th></tr>	
+ <tr><td>app</td><td>142</td></tr>
+ <tr><td>would</td><td>126</td></tr>
+ <tr><td>video</td><td>108</td></tr>
+ <tr><td>like</td><td>92</td></tr>
+ <tr><td>add</td><td>77</td></tr>
+ <tr><td>game</td><td>74</td></tr>
+ <tr><td>option</td><td>63</td></tr>
+ <tr><td>It</td><td>61</td></tr>
+ <tr><td>videos</td><td>59</td></tr>
+ <tr><td>Please</td><td>54</td></tr>
+ <tr><td>play</td><td>52</td></tr>
+ <tr><td>back</td><td>43</td></tr>
+ <tr><td>The</td><td>40</td></tr>
+ <tr><td>Video</td><td>40</td></tr>
+ <tr><td>could</td><td>40</td></tr>
+ <tr><td>time</td><td>39</td></tr>
+ <tr><td>great</td><td>37</td></tr>
+ <tr><td>screen</td><td>37</td></tr>
+ <tr><td>button</td><td>34</td></tr>
+ <tr><td>one</td><td>34</td></tr>
+ <tr><td>please</td><td>34</td></tr>
+ <tr><td>Sony</td><td>33</td></tr>
+ <tr><td>good</td><td>32</td></tr>
+ <tr><td>music</td><td>32</td></tr>
+ <tr><td>new</td><td>31</td></tr>
+ <tr><td>dont</td><td>31</td></tr>
+ <tr><td>better</td><td>30</td></tr>
+ <tr><td>also</td><td>30</td></tr>
+ <tr><td>use</td><td>30</td></tr>
+ <tr><td>levels</td><td>28</td></tr>
+ <tr><td>feature</td><td>28</td></tr>
+ <tr><td>make</td><td>27</td></tr>
+ <tr><td>version</td><td>27</td></tr>
+ <tr><td>movie</td><td>27</td></tr>
+ <tr><td>want</td><td>27</td></tr>
+ <tr><td>theme</td><td>25</td></tr>
+ <tr><td>album</td><td>25</td></tr>
+ <tr><td>Add</td><td>25</td></tr>
+ <tr><td>need</td><td>24</td></tr>
+ <tr><td>choose</td><td>23</td></tr>
+ <tr><td>see</td><td>23</td></tr>
+ <tr><td>played</td><td>23</td></tr>
+ <tr><td>top</td><td>22</td></tr>
+ <tr><td>little</td><td>22</td></tr>
+ <tr><td>song</td><td>22</td></tr>
+ <tr><td>sound</td><td>22</td></tr>
+ <tr><td>support</td><td>21</td></tr>
+ <tr><td>options</td><td>21</td></tr>
+ <tr><td>able</td><td>21</td></tr>
+ <tr><td>change</td><td>21</td></tr>
+ <tr><td>playing</td><td>21</td></tr>
+ <tr><td>nice</td><td>21</td></tr>
+ <tr><td>get</td><td>21</td></tr>
+ <tr><td>Album</td><td>21</td></tr>
+ <tr><td>two</td><td>21</td></tr>
+ <tr><td>think</td><td>20</td></tr>
+ <tr><td>update</td><td>20</td></tr>
+ <tr><td>added</td><td>19</td></tr>
+ <tr><td>phone</td><td>19</td></tr>
+ <tr><td>Just</td><td>18</td></tr>
+ <tr><td>And</td><td>18</td></tr>
+ <tr><td>main</td><td>18</td></tr>
+ <tr><td>cant</td><td>18</td></tr>
+ <tr><td>set</td><td>18</td></tr>
+ <tr><td>available</td><td>18</td></tr>
+ <tr><td>This</td><td>17</td></tr>
+ <tr><td>love</td><td>17</td></tr>
+ <tr><td>alarm</td><td>17</td></tr>
+ <tr><td>You</td><td>17</td></tr>
+ <tr><td>Beta</td><td>16</td></tr>
+ <tr><td>track</td><td>16</td></tr>
+ <tr><td>work</td><td>16</td></tr>
+ <tr><td>Music</td><td>16</td></tr>
+ <tr><td>way</td><td>16</td></tr>
+ <tr><td>still</td><td>16</td></tr>
+ <tr><td>Can</td><td>16</td></tr>
+ <tr><td>movies</td><td>15</td></tr>
+ <tr><td>suggest</td><td>15</td></tr>
+ <tr><td>ability</td><td>15</td></tr>
+ <tr><td>give</td><td>15</td></tr>
+ <tr><td>really</td><td>15</td></tr>
+ <tr><td>though</td><td>15</td></tr>
+ <tr><td>More</td><td>15</td></tr>
+ <tr><td>look</td><td>15</td></tr>
+ <tr><td>instead</td><td>15</td></tr>
+ <tr><td>dark</td><td>14</td></tr>
+ <tr><td>user</td><td>14</td></tr>
+ <tr><td>design</td><td>14</td></tr>
+ <tr><td>without</td><td>14</td></tr>
+ <tr><td>show</td><td>14</td></tr>
+ <tr><td>formats</td><td>14</td></tr>
+ <tr><td>bring</td><td>14</td></tr>
+ <tr><td>Facebook</td><td>14</td></tr>
+ <tr><td>wish</td><td>14</td></tr>
+ <tr><td>features</td><td>13</td></tr>
+ <tr><td>Need</td><td>13</td></tr>
+ <tr><td>possible</td><td>13</td></tr>
+ <tr><td>switch</td><td>13</td></tr>
+ <tr><td>different</td><td>13</td></tr>
+ <tr><td>brightness</td><td>13</td></tr>
+ <tr><td>Great</td><td>13</td></tr>
+ <tr><td>But</td><td>13</td></tr>
+ <tr><td>well</td><td>13</td></tr>
+ <tr><td>photos</td><td>13</td></tr>
+ <tr><td>games</td><td>13</td></tr>
+ <tr><td>last</td><td>13</td></tr>
+ <tr><td>know</td><td>13</td></tr>
+ <tr><td>hide</td><td>13</td></tr>
+ <tr><td>application</td><td>13</td></tr>
+ <tr><td>If</td><td>13</td></tr>
+ <tr><td>running</td><td>12</td></tr>
+ <tr><td>put</td><td>12</td></tr>
+ <tr><td>used</td><td>12</td></tr>
+ <tr><td>fun</td><td>12</td></tr>
+ <tr><td>search</td><td>12</td></tr>
+ <tr><td>Now</td><td>12</td></tr>
+ <tr><td>previous</td><td>12</td></tr>
+ <tr><td>small</td><td>12</td></tr>
+ <tr><td>even</td><td>12</td></tr>
+ <tr><td>ads</td><td>12</td></tr>
+ <tr><td>first</td><td>12</td></tr>
+ <tr><td>possibility</td><td>11</td></tr>
+ <tr><td>App</td><td>11</td></tr>
+ <tr><td>apps</td><td>11</td></tr>
+ <tr><td>id</td><td>11</td></tr>
+ <tr><td>fine</td><td>11</td></tr>
+ <tr><td>Would</td><td>11</td></tr>
+ <tr><td>photo</td><td>11</td></tr>
+ <tr><td>history</td><td>11</td></tr>
+ <tr><td>Also</td><td>11</td></tr>
+ <tr><td>Thanks</td><td>11</td></tr>
+ <tr><td>much</td><td>11</td></tr>
+ <tr><td>Its</td><td>11</td></tr>
+ <tr><td>easy</td><td>11</td></tr>
+ <tr><td>mark</td><td>11</td></tr>
+ <tr><td>One</td><td>11</td></tr>
+ <tr><td>Hi</td><td>11</td></tr>
+ <tr><td>player</td><td>10</td></tr>
+ <tr><td>Lifelog</td><td>10</td></tr>
+ <tr><td>idea</td><td>10</td></tr>
+ <tr><td>Good</td><td>10</td></tr>
+ <tr><td>bit</td><td>10</td></tr>
+ <tr><td>enough</td><td>10</td></tr>
+ <tr><td>longer</td><td>10</td></tr>
+ <tr><td>select</td><td>10</td></tr>
+ <tr><td>Very</td><td>10</td></tr>
+ <tr><td>level</td><td>10</td></tr>
+ <tr><td>long</td><td>10</td></tr>
+ <tr><td>latest</td><td>10</td></tr>
+ <tr><td>using</td><td>10</td></tr>
+ <tr><td>shown</td><td>10</td></tr>
+ <tr><td>background</td><td>10</td></tr>
+ <tr><td>five</td><td>10</td></tr>
+ <tr><td>menu</td><td>10</td></tr>
+ <tr><td>open</td><td>10</td></tr>
+ <tr><td>tiles</td><td>10</td></tr>
+ <tr><td>count</td><td>10</td></tr>
+ <tr><td>quality</td><td>10</td></tr>
+ <tr><td>artist</td><td>10</td></tr>
+ <tr><td>quick</td><td>9</td></tr>
+ <tr><td>sony</td><td>9</td></tr>
+ <tr><td>Whats</td><td>9</td></tr>
+ <tr><td>needs</td><td>9</td></tr>
+ <tr><td>A</td><td>9</td></tr>
+ <tr><td>maybe</td><td>9</td></tr>
+ <tr><td>instructions</td><td>9</td></tr>
+ <tr><td>New</td><td>9</td></tr>
+ <tr><td>start</td><td>9</td></tr>
+ <tr><td>audio</td><td>9</td></tr>
+ <tr><td>volume</td><td>9</td></tr>
+ <tr><td>life</td><td>9</td></tr>
+ <tr><td>download</td><td>9</td></tr>
+ <tr><td>u</td><td>9</td></tr>
+ <tr><td>original</td><td>9</td></tr>
+ <tr><td>Love</td><td>9</td></tr>
+ <tr><td>cover</td><td>9</td></tr>
+ <tr><td>press</td><td>9</td></tr>
+ <tr><td>cool</td><td>9</td></tr>
+ <tr><td>appears</td><td>9</td></tr>
+ <tr><td>Google</td><td>9</td></tr>
+ <tr><td>next</td><td>9</td></tr>
+ <tr><td>colors</td><td>9</td></tr>
+ <tr><td>delete</td><td>9</td></tr>
+ <tr><td>missing</td><td>9</td></tr>
+ <tr><td>people</td><td>8</td></tr>
+ <tr><td>Light</td><td>8</td></tr>
+ <tr><td>Why</td><td>8</td></tr>
+ <tr><td>etc</td><td>8</td></tr>
+ <tr><td>example</td><td>8</td></tr>
+ <tr><td>layout</td><td>8</td></tr>
+ <tr><td>purpose</td><td>8</td></tr>
+ <tr><td>Like</td><td>8</td></tr>
+ <tr><td>understand</td><td>8</td></tr>
+ <tr><td>data</td><td>8</td></tr>
+ <tr><td>save</td><td>8</td></tr>
+ <tr><td>color</td><td>8</td></tr>
+ <tr><td>subtitles</td><td>8</td></tr>
+ <tr><td>every</td><td>8</td></tr>
+ <tr><td>black</td><td>8</td></tr>
+ <tr><td>What</td><td>8</td></tr>
+</table>
+
+
+<table id="has_info_asking" class="table">
+ <tr><th>Term</th><th>Counts</th></tr>
+ <tr><td>app</td><td>63</td></tr>
+ <tr><td>video</td><td>51</td></tr>
+ <tr><td>How</td><td>28</td></tr>
+ <tr><td>like</td><td>28</td></tr>
+ <tr><td>beta</td><td>27</td></tr>
+ <tr><td>would</td><td>24</td></tr>
+ <tr><td>new</td><td>24</td></tr>
+ <tr><td>version</td><td>23</td></tr>
+ <tr><td>add</td><td>22</td></tr>
+ <tr><td>Why</td><td>20</td></tr>
+ <tr><td>one</td><td>20</td></tr>
+ <tr><td>play</td><td>16</td></tr>
+ <tr><td>What</td><td>16</td></tr>
+ <tr><td>Can</td><td>16</td></tr>
+ <tr><td>time</td><td>16</td></tr>
+ <tr><td>download</td><td>15</td></tr>
+ <tr><td>phone</td><td>15</td></tr>
+ <tr><td>The</td><td>15</td></tr>
+ <tr><td>cant</td><td>14</td></tr>
+ <tr><td>update</td><td>14</td></tr>
+ <tr><td>videos</td><td>14</td></tr>
+ <tr><td>button</td><td>13</td></tr>
+ <tr><td>dont</td><td>13</td></tr>
+ <tr><td>Video</td><td>13</td></tr>
+ <tr><td>great</td><td>13</td></tr>
+ <tr><td>It</td><td>13</td></tr>
+ <tr><td>lifelog</td><td>13</td></tr>
+ <tr><td>link</td><td>13</td></tr>
+ <tr><td>movie</td><td>12</td></tr>
+ <tr><td>make</td><td>12</td></tr>
+ <tr><td>still</td><td>12</td></tr>
+ <tr><td>good</td><td>12</td></tr>
+ <tr><td>available</td><td>12</td></tr>
+ <tr><td>could</td><td>12</td></tr>
+ <tr><td>Sony</td><td>12</td></tr>
+ <tr><td>use</td><td>11</td></tr>
+ <tr><td>doesnt</td><td>11</td></tr>
+ <tr><td>get</td><td>11</td></tr>
+ <tr><td>song</td><td>11</td></tr>
+ <tr><td>change</td><td>11</td></tr>
+ <tr><td>Hi</td><td>11</td></tr>
+ <tr><td>movies</td><td>10</td></tr>
+ <tr><td>know</td><td>10</td></tr>
+ <tr><td>This</td><td>10</td></tr>
+ <tr><td>without</td><td>10</td></tr>
+ <tr><td>Whats</td><td>10</td></tr>
+ <tr><td>option</td><td>10</td></tr>
+ <tr><td>two</td><td>9</td></tr>
+ <tr><td>But</td><td>9</td></tr>
+ <tr><td>songs</td><td>9</td></tr>
+ <tr><td>something</td><td>9</td></tr>
+ <tr><td>photos</td><td>9</td></tr>
+ <tr><td>tester</td><td>9</td></tr>
+ <tr><td>need</td><td>8</td></tr>
+ <tr><td>create</td><td>8</td></tr>
+ <tr><td>want</td><td>8</td></tr>
+ <tr><td>using</td><td>8</td></tr>
+ <tr><td>music</td><td>8</td></tr>
+ <tr><td>google</td><td>8</td></tr>
+ <tr><td>xperia</td><td>8</td></tr>
+ <tr><td>really</td><td>8</td></tr>
+ <tr><td>Album</td><td>8</td></tr>
+ <tr><td>apps</td><td>8</td></tr>
+ <tr><td>work</td><td>8</td></tr>
+ <tr><td>even</td><td>8</td></tr>
+ <tr><td>isnt</td><td>8</td></tr>
+ <tr><td>different</td><td>8</td></tr>
+ <tr><td>updated</td><td>8</td></tr>
+ <tr><td>Do</td><td>8</td></tr>
+ <tr><td>And</td><td>8</td></tr>
+ <tr><td>see</td><td>8</td></tr>
+ <tr><td>latest</td><td>8</td></tr>
+ <tr><td>feature</td><td>7</td></tr>
+ <tr><td>give</td><td>7</td></tr>
+ <tr><td>three</td><td>7</td></tr>
+ <tr><td>Facebook</td><td>7</td></tr>
+ <tr><td>think</td><td>7</td></tr>
+ <tr><td>artist</td><td>7</td></tr>
+ <tr><td>steps</td><td>7</td></tr>
+ <tr><td>support</td><td>6</td></tr>
+ <tr><td>help</td><td>6</td></tr>
+ <tr><td>back</td><td>6</td></tr>
+ <tr><td>problem</td><td>6</td></tr>
+ <tr><td>long</td><td>6</td></tr>
+ <tr><td>So</td><td>6</td></tr>
+ <tr><td>edit</td><td>6</td></tr>
+ <tr><td>old</td><td>6</td></tr>
+ <tr><td>Beta</td><td>6</td></tr>
+ <tr><td>possible</td><td>6</td></tr>
+ <tr><td>first</td><td>6</td></tr>
+ <tr><td>click</td><td>6</td></tr>
+ <tr><td>Thanks</td><td>6</td></tr>
+ <tr><td>got</td><td>6</td></tr>
+ <tr><td>ads</td><td>6</td></tr>
+ <tr><td>mean</td><td>6</td></tr>
+ <tr><td>recognize</td><td>6</td></tr>
+ <tr><td>sony</td><td>6</td></tr>
+ <tr><td>created</td><td>6</td></tr>
+ <tr><td>access</td><td>6</td></tr>
+ <tr><td>screen</td><td>6</td></tr>
+ <tr><td>fiture</td><td>6</td></tr>
+ <tr><td>history</td><td>6</td></tr>
+ <tr><td>activity</td><td>6</td></tr>
+ <tr><td>sound</td><td>6</td></tr>
+ <tr><td>Any</td><td>5</td></tr>
+ <tr><td>Access</td><td>5</td></tr>
+ <tr><td>working</td><td>5</td></tr>
+ <tr><td>last</td><td>5</td></tr>
+ <tr><td>Does</td><td>5</td></tr>
+ <tr><td>please</td><td>5</td></tr>
+ <tr><td>today</td><td>5</td></tr>
+ <tr><td>ad</td><td>5</td></tr>
+ <tr><td>annoying</td><td>5</td></tr>
+ <tr><td>yet</td><td>5</td></tr>
+ <tr><td>application</td><td>5</td></tr>
+ <tr><td>account</td><td>5</td></tr>
+ <tr><td>todays</td><td>5</td></tr>
+ <tr><td>background</td><td>5</td></tr>
+ <tr><td>going</td><td>5</td></tr>
+ <tr><td>another</td><td>5</td></tr>
+ <tr><td>name</td><td>5</td></tr>
+ <tr><td>size</td><td>5</td></tr>
+ <tr><td>enough</td><td>5</td></tr>
+ <tr><td>Material</td><td>5</td></tr>
+ <tr><td>Design</td><td>5</td></tr>
+ <tr><td>example</td><td>5</td></tr>
+ <tr><td>also</td><td>5</td></tr>
+ <tr><td>game</td><td>5</td></tr>
+ <tr><td>way</td><td>5</td></tr>
+ <tr><td>bar</td><td>5</td></tr>
+ <tr><td>Please</td><td>5</td></tr>
+ <tr><td>nice</td><td>5</td></tr>
+ <tr><td>circle</td><td>5</td></tr>
+ <tr><td>find</td><td>5</td></tr>
+ <tr><td>trackid</td><td>5</td></tr>
+ <tr><td>text</td><td>5</td></tr>
+ <tr><td>Search</td><td>5</td></tr>
+ <tr><td>show</td><td>5</td></tr>
+ <tr><td>community</td><td>5</td></tr>
+ <tr><td>average</td><td>5</td></tr>
+ <tr><td>thausand</td><td>5</td></tr>
+ <tr><td>When</td><td>5</td></tr>
+ <tr><td>many</td><td>5</td></tr>
+ <tr><td>file</td><td>5</td></tr>
+ <tr><td>player</td><td>4</td></tr>
+ <tr><td>ps</td><td>4</td></tr>
+ <tr><td>Could</td><td>4</td></tr>
+ <tr><td>issue</td><td>4</td></tr>
+ <tr><td>clips</td><td>4</td></tr>
+ <tr><td>made</td><td>4</td></tr>
+ <tr><td>seconds</td><td>4</td></tr>
+ <tr><td>twenty</td><td>4</td></tr>
+ <tr><td>clip</td><td>4</td></tr>
+ <tr><td>end</td><td>4</td></tr>
+ <tr><td>Just</td><td>4</td></tr>
+ <tr><td>question</td><td>4</td></tr>
+ <tr><td>sometimes</td><td>4</td></tr>
+ <tr><td>search</td><td>4</td></tr>
+ <tr><td>icon</td><td>4</td></tr>
+ <tr><td>u</td><td>4</td></tr>
+ <tr><td>Not</td><td>4</td></tr>
+ <tr><td>For</td><td>4</td></tr>
+ <tr><td>hide</td><td>4</td></tr>
+ <tr><td>appears</td><td>4</td></tr>
+ <tr><td>Android</td><td>4</td></tr>
+ <tr><td>works</td><td>4</td></tr>
+ <tr><td>My</td><td>4</td></tr>
+ <tr><td>fix</td><td>4</td></tr>
+ <tr><td>whats</td><td>4</td></tr>
+ <tr><td>media</td><td>4</td></tr>
+ <tr><td>data</td><td>4</td></tr>
+ <tr><td>brings</td><td>4</td></tr>
+ <tr><td>directly</td><td>4</td></tr>
+ <tr><td>photo</td><td>4</td></tr>
+ <tr><td>current</td><td>4</td></tr>
+ <tr><td>getting</td><td>4</td></tr>
+ <tr><td>TrackID</td><td>4</td></tr>
+ <tr><td>track</td><td>4</td></tr>
+ <tr><td>plan</td><td>4</td></tr>
+ <tr><td>little</td><td>4</td></tr>
+ <tr><td>connect</td><td>4</td></tr>
+ <tr><td>smartband</td><td>4</td></tr>
+ <tr><td>battery</td><td>4</td></tr>
+ <tr><td>list</td><td>4</td></tr>
+ <tr><td>stored</td><td>4</td></tr>
+ <tr><td>album</td><td>4</td></tr>
+ <tr><td>info</td><td>4</td></tr>
+ <tr><td>better</td><td>4</td></tr>
+ <tr><td>Google</td><td>4</td></tr>
+ <tr><td>watch</td><td>4</td></tr>
+ <tr><td>day</td><td>4</td></tr>
+ <tr><td>six</td><td>4</td></tr>
+ <tr><td>minutes</td><td>4</td></tr>
+ <tr><td>page</td><td>4</td></tr>
+ <tr><td>brightness</td><td>4</td></tr>
+ <tr><td>files</td><td>4</td></tr>
+ <tr><td>gesture</td><td>4</td></tr>
+ <tr><td>Side</td><td>4</td></tr>
+ <tr><td>release</td><td>4</td></tr>
+ <tr><td>Will</td><td>4</td></tr>
+</table>
+
+<table id="has_info_giving" class="table">
+ <tr><th>Term</th><th>Counts</th></tr>
+ <tr><td>app</td><td>98</td></tr>
+ <tr><td>like</td><td>44</td></tr>
+ <tr><td>The</td><td>40</td></tr>
+ <tr><td>video</td><td>36</td></tr>
+ <tr><td>game</td><td>42</td></tr>
+ <tr><td>time</td><td>32</td></tr>
+ <tr><td>use</td><td>30</td></tr>
+ <tr><td>great</td><td>29</td></tr>
+ <tr><td>one</td><td>27</td></tr>
+ <tr><td>play</td><td>25</td></tr>
+ <tr><td>easy</td><td>24</td></tr>
+ <tr><td>fun</td><td>24</td></tr>
+ <tr><td>good</td><td>23</td></tr>
+ <tr><td>simple</td><td>23</td></tr>
+ <tr><td>videos</td><td>21</td></tr>
+ <tr><td>This</td><td>20</td></tr>
+ <tr><td>would</td><td>19</td></tr>
+ <tr><td>nice</td><td>19</td></tr>
+ <tr><td>screen</td><td>18</td></tr>
+ <tr><td>back</td><td>18</td></tr>
+ <tr><td>Facebook</td><td>18</td></tr>
+ <tr><td>levels</td><td>17</td></tr>
+ <tr><td>version</td><td>17</td></tr>
+ <tr><td>people</td><td>17</td></tr>
+ <tr><td>playing</td><td>16</td></tr>
+ <tr><td>really</td><td>16</td></tr>
+ <tr><td>Its</td><td>16</td></tr>
+ <tr><td>best</td><td>16</td></tr>
+ <tr><td>new</td><td>16</td></tr>
+ <tr><td>addictive</td><td>15</td></tr>
+ <tr><td>Great</td><td>15</td></tr>
+ <tr><td>design</td><td>15</td></tr>
+ <tr><td>want</td><td>15</td></tr>
+ <tr><td>add</td><td>14</td></tr>
+ <tr><td>Very</td><td>14</td></tr>
+ <tr><td>option</td><td>14</td></tr>
+ <tr><td>dont</td><td>14</td></tr>
+ <tr><td>Good</td><td>14</td></tr>
+ <tr><td>also</td><td>14</td></tr>
+ <tr><td>songs</td><td>14</td></tr>
+ <tr><td>alarm</td><td>13</td></tr>
+ <tr><td>apps</td><td>13</td></tr>
+ <tr><td>And</td><td>13</td></tr>
+ <tr><td>If</td><td>13</td></tr>
+ <tr><td>It</td><td>13</td></tr>
+ <tr><td>many</td><td>12</td></tr>
+ <tr><td>get</td><td>12</td></tr>
+ <tr><td>well</td><td>12</td></tr>
+ <tr><td>love</td><td>12</td></tr>
+ <tr><td>top</td><td>12</td></tr>
+ <tr><td>free</td><td>12</td></tr>
+ <tr><td>much</td><td>12</td></tr>
+ <tr><td>sleep</td><td>12</td></tr>
+ <tr><td>could</td><td>12</td></tr>
+ <tr><td>You</td><td>12</td></tr>
+ <tr><td>Simple</td><td>11</td></tr>
+ <tr><td>little</td><td>11</td></tr>
+ <tr><td>still</td><td>11</td></tr>
+ <tr><td>background</td><td>11</td></tr>
+ <tr><td>way</td><td>11</td></tr>
+ <tr><td>phone</td><td>11</td></tr>
+ <tr><td>works</td><td>11</td></tr>
+ <tr><td>No</td><td>11</td></tr>
+ <tr><td>better</td><td>11</td></tr>
+ <tr><td>cant</td><td>10</td></tr>
+ <tr><td>make</td><td>10</td></tr>
+ <tr><td>two</td><td>10</td></tr>
+ <tr><td>keep</td><td>10</td></tr>
+ <tr><td>even</td><td>10</td></tr>
+ <tr><td>need</td><td>10</td></tr>
+ <tr><td>application</td><td>10</td></tr>
+ <tr><td>quality</td><td>10</td></tr>
+ <tr><td>But</td><td>10</td></tr>
+ <tr><td>work</td><td>10</td></tr>
+ <tr><td>App</td><td>10</td></tr>
+ <tr><td>friends</td><td>10</td></tr>
+ <tr><td>Really</td><td>10</td></tr>
+ <tr><td>fast</td><td>10</td></tr>
+ <tr><td>without</td><td>10</td></tr>
+ <tr><td>movie</td><td>10</td></tr>
+ <tr><td>music</td><td>10</td></tr>
+ <tr><td>wait</td><td>9</td></tr>
+ <tr><td>think</td><td>9</td></tr>
+ <tr><td>choose</td><td>9</td></tr>
+ <tr><td>iPad</td><td>9</td></tr>
+ <tr><td>Now</td><td>9</td></tr>
+ <tr><td>enough</td><td>9</td></tr>
+ <tr><td>able</td><td>9</td></tr>
+ <tr><td>cool</td><td>9</td></tr>
+ <tr><td>A</td><td>9</td></tr>
+ <tr><td>long</td><td>9</td></tr>
+ <tr><td>weeks</td><td>9</td></tr>
+ <tr><td>voice</td><td>9</td></tr>
+ <tr><td>ads</td><td>8</td></tr>
+ <tr><td>give</td><td>8</td></tr>
+ <tr><td>access</td><td>8</td></tr>
+ <tr><td>latest</td><td>8</td></tr>
+ <tr><td>hard</td><td>8</td></tr>
+ <tr><td>What</td><td>8</td></tr>
+ <tr><td>Super</td><td>8</td></tr>
+ <tr><td>exchange</td><td>8</td></tr>
+ <tr><td>They</td><td>8</td></tr>
+ <tr><td>played</td><td>8</td></tr>
+ <tr><td>update</td><td>8</td></tr>
+ <tr><td>sound</td><td>8</td></tr>
+ <tr><td>added</td><td>8</td></tr>
+ <tr><td>right</td><td>7</td></tr>
+ <tr><td>put</td><td>7</td></tr>
+ <tr><td>album</td><td>7</td></tr>
+ <tr><td>interface</td><td>7</td></tr>
+ <tr><td>find</td><td>7</td></tr>
+ <tr><td>bit</td><td>7</td></tr>
+ <tr><td>see</td><td>7</td></tr>
+ <tr><td>bar</td><td>7</td></tr>
+ <tr><td>go</td><td>7</td></tr>
+ <tr><td>lot</td><td>7</td></tr>
+ <tr><td>using</td><td>7</td></tr>
+ <tr><td>learn</td><td>7</td></tr>
+ <tr><td>open</td><td>7</td></tr>
+ <tr><td>deleted</td><td>7</td></tr>
+ <tr><td>helpful</td><td>7</td></tr>
+ <tr><td>set</td><td>7</td></tr>
+ <tr><td>suggestions</td><td>7</td></tr>
+ <tr><td>displayed</td><td>7</td></tr>
+ <tr><td>Just</td><td>7</td></tr>
+ <tr><td>information</td><td>7</td></tr>
+ <tr><td>movies</td><td>7</td></tr>
+ <tr><td>idea</td><td>7</td></tr>
+ <tr><td>Love</td><td>6</td></tr>
+ <tr><td>In</td><td>6</td></tr>
+ <tr><td>old</td><td>6</td></tr>
+ <tr><td>already</td><td>6</td></tr>
+ <tr><td>user</td><td>6</td></tr>
+ <tr><td>beta</td><td>6</td></tr>
+ <tr><td>doesnt</td><td>6</td></tr>
+ <tr><td>xperia</td><td>6</td></tr>
+ <tr><td>Why</td><td>6</td></tr>
+ <tr><td>So</td><td>6</td></tr>
+ <tr><td>menu</td><td>6</td></tr>
+ <tr><td>Easy</td><td>6</td></tr>
+ <tr><td>first</td><td>6</td></tr>
+ <tr><td>pictures</td><td>6</td></tr>
+ <tr><td>For</td><td>6</td></tr>
+ <tr><td>data</td><td>6</td></tr>
+ <tr><td>Top</td><td>6</td></tr>
+ <tr><td>images</td><td>6</td></tr>
+ <tr><td>control</td><td>6</td></tr>
+ <tr><td>bring</td><td>6</td></tr>
+ <tr><td>look</td><td>6</td></tr>
+ <tr><td>My</td><td>6</td></tr>
+ <tr><td>week</td><td>6</td></tr>
+ <tr><td>player</td><td>6</td></tr>
+ <tr><td>please</td><td>6</td></tr>
+ <tr><td>pay</td><td>6</td></tr>
+ <tr><td>different</td><td>6</td></tr>
+ <tr><td>pc</td><td>6</td></tr>
+ <tr><td>song</td><td>6</td></tr>
+ <tr><td>though</td><td>6</td></tr>
+ <tr><td>part</td><td>6</td></tr>
+ <tr><td>Can</td><td>6</td></tr>
+ <tr><td>always</td><td>6</td></tr>
+ <tr><td>say</td><td>5</td></tr>
+ <tr><td>image</td><td>5</td></tr>
+ <tr><td>fix</td><td>5</td></tr>
+ <tr><td>possible</td><td>5</td></tr>
+ <tr><td>beautiful</td><td>5</td></tr>
+ <tr><td>Please</td><td>5</td></tr>
+ <tr><td>device</td><td>5</td></tr>
+ <tr><td>stars</td><td>5</td></tr>
+ <tr><td>never</td><td>5</td></tr>
+ <tr><td>show</td><td>5</td></tr>
+ <tr><td>connect</td><td>5</td></tr>
+ <tr><td>process</td><td>5</td></tr>
+ <tr><td>waste</td><td>5</td></tr>
+ <tr><td>recognition</td><td>5</td></tr>
+ <tr><td>looks</td><td>5</td></tr>
+ <tr><td>taken</td><td>5</td></tr>
+ <tr><td>speed</td><td>5</td></tr>
+ <tr><td>faster</td><td>5</td></tr>
+ <tr><td>far</td><td>5</td></tr>
+ <tr><td>yet</td><td>5</td></tr>
+ <tr><td>page</td><td>5</td></tr>
+ <tr><td>navigation</td><td>5</td></tr>
+ <tr><td>Maybe</td><td>5</td></tr>
+ <tr><td>Thanks</td><td>5</td></tr>
+ <tr><td>thing</td><td>5</td></tr>
+ <tr><td>annoying</td><td>5</td></tr>
+ <tr><td>users</td><td>5</td></tr>
+ <tr><td>bad</td><td>5</td></tr>
+ <tr><td>days</td><td>5</td></tr>
+ <tr><td>Have</td><td>5</td></tr>
+ <tr><td>services</td><td>5</td></tr>
+ <tr><td>shows</td><td>5</td></tr>
+ <tr><td>download</td><td>5</td></tr>
+ <tr><td>practical</td><td>5</td></tr>
+ <tr><td>support</td><td>5</td></tr>
+ <tr><td>stone</td><td>5</td></tr>
+ <tr><td>another</td><td>5</td></tr>
+ <tr><td>know</td><td>5</td></tr>
+ <tr><td>wake</td><td>5</td></tr>
+</table>
+</div>
+<script type="text/javascript">
+	$('select').change(function(){
+    if($(this).val() != "-1")
+    {
+    $('table.table').hide();
+    $('table#'+$(this).val()).show();
+    }
+});
+
+</script>
+
+
+
+
+</body>
+</html>

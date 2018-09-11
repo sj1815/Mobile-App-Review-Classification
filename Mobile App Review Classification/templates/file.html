@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+ <head lang="en">
+    <title>Home Page</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 50%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+
+        .nav {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+
+        .nav a {
+            float: left;
+            color: grey;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+
+        .nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+
+        .nav a.active {
+            background-color: #0000CD;
+            color: white;
+        }
+
+        body{
+            background-color: #BCC6CC;
+        }
+    </style>
+ </head>
+ <body>
+	<br><br>
+    <h1><center>Mobile Reviews Classifier</h1>
+    <div class="nav">
+        <a href="#index" class="active">Home</a>
+        <a href="/statistics">Word Count</a>
+    </div>
+	<br><br><br><br><br><br><br>
+    <center>Enter review: <input id="review" type="text" value=""><input id="submitbutton" type="submit" value="Get labels">
+
+    <h2 id="h1R"></h2>
+    <div id="results"></div>
+    <script type="text/javascript">
+
+    function runPyScript(input){
+        var jqXHR = $.ajax({
+            type: "POST",
+            url: "/classify",
+            async: false,
+            data: { "review": input }
+        });
+
+        return jqXHR.responseText;
+    }
+
+    $('#submitbutton').click(function(){
+	    document.getElementById("results").style.display = "none";
+        datatosend = $('#review').val();
+        result = runPyScript(datatosend);
+        $('#h1R').html("Results");
+        $('#results').html(generateTable(result));
+    });
+
+    function generateTable(input){
+        var table = "<table><tr><th>Label</th><th>Value</th>"
+        var json = $.parseJSON(input);
+        $.each( json, function( key, value ) {
+            table += "<tr><td>"+key+"</td><td>"+value+"</td></tr>";
+        });
+		document.getElementById("results").style.display = "block";
+		return table;
+    }
+
+</script>
